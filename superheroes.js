@@ -5,7 +5,7 @@ const superheroes = [
     dob: "1995-07-05",
     cape: false,
     powers: ["controlling other people's thoughts", "JS"],
-    img: "https://www.pinterest.es/pin/572660908869939668/",
+    img: "https://i.pinimg.com/564x/dd/03/95/dd0395da9934e4a75ef65a5c5c9a6a05.jpg",
     gender: "female",
     species: "mutant",
   },
@@ -407,9 +407,30 @@ const superheroes = [
   },
 ];
 
-alert(
-  "1. Checking if JS file is linked up correctly. \n2. Always open the inspector/console when woorking with the JS \n3. Write your code in the end of the js-file \n4. Don't use alert boxes for UI... \n5. Delete this message or comment it out"
-);
-console.table(superheroes);
+// alert(
+//   "1. Checking if JS file is linked up correctly. \n2. Always open the inspector/console when woorking with the JS \n3. Write your code in the end of the js-file \n4. Don't use alert boxes for UI... \n5. Delete this message or comment it out"
+// );
+// console.table(superheroes);
 
 /* write your code here */
+
+superheroes.forEach(showHero);
+
+function showHero(hero) {
+  const template = document.querySelector(".mainTemplate").content;
+  const clone = template.cloneNode(true);
+  clone.querySelector(".alias").textContent = hero.alias;
+  clone.querySelector(".realName").textContent = hero.birthname;
+  clone.querySelector("img").src = hero.img;
+  clone.querySelector(".birth").textContent = hero.dob;
+  for (let i = 0; i < hero.powers.length; i++) {
+    const powersTemplate = document.querySelector(".powersTemplate").content;
+    const powersClone = powersTemplate.cloneNode(true);
+    powersClone.querySelector(".power").textContent = hero.powers[i];
+    const powersParent = document.querySelector("div");
+    powersParent.appendChild(powersClone);
+  }
+
+  const parent = document.querySelector("main");
+  parent.appendChild(clone);
+}
